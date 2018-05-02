@@ -12,6 +12,15 @@ window.onload = function () {
       case 40: // key ArrowDown
         arrowDown();
         break;
+
+      case 37: // key Arrowleft
+        arrowLeft();
+        break;
+
+      case 39: // key ArrowRight
+        arrowRight();
+        break;
+
     }
   });
 };
@@ -28,3 +37,15 @@ function arrowDown() {
   hero.style.top = (hero.offsetTop + 3) + 'px';
 }
 
+function arrowLeft() {
+  var hero = document.getElementById('hero');
+  console.log('arrowleft', hero.offsetLeft);
+  hero.style.left = (hero.offsetLeft - 3) + 'px';
+}
+
+function arrowRight() {
+  var hero = document.getElementById('hero');
+  console.log('arrowRight', hero.offsetLeft);
+  hero.style.left = (hero.offsetLeft + 3) + 'px';
+
+} 
