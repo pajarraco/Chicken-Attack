@@ -6,7 +6,7 @@ body{
   display: flex;
   width: 100%;
   height: 100%;
-  background-color: #A8E0E1;
+  background-color: #2EAC6D;
 }
 
 .hero{
@@ -21,9 +21,11 @@ body{
   width: 110px;
 }
 
+
+
 .villain{
   position: absolute;
-  z-index: 110;
+  z-index: 100;
   border: 1px solid #222222;
   top: 50px;
   left: 100px;

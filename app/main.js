@@ -21,6 +21,21 @@ window.onload = function () {
         arrowRight();
         break;
 
+      case 87: // key Up
+        Up();
+        break;
+
+      case 83: // key Down
+        Down();
+        break;
+
+      case 65: // key left
+        Left();
+        break;
+
+      case 68: // key Right
+        Right();
+        break;
     }
   });
 };
@@ -50,41 +65,6 @@ function arrowRight() {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-window.onload = function () {
-  // console.log('ready');
-  document.addEventListener('keydown', function (key) {
-    // console.log('key', key);
-    switch (key.key) {
-      case W: // key Up
-        Up();
-        break;
-
-      case s: // key Down
-        Down();
-        break;
-
-      case a: // key left
-        Left();
-        break;
-
-      case d: // key Right
-        Right();
-        break;
-
-    }
-  });
-};
-
 function Up() {
   var villain = document.getElementById('villain');
   console.log('Up', villain.offsetTop);
@@ -92,7 +72,7 @@ function Up() {
 }
 
 function Down() {
-  var villain = document.getElementById('vilain');
+  var villain = document.getElementById('villain');
   console.log('Down', villain.offsetTop);
   villain.style.top = (villain.offsetTop + 3) + 'px';
 }
@@ -109,5 +89,6 @@ function Right() {
   villain.style.left = (villain.offsetLeft + 3) + 'px';
 
 }
+
 
 
