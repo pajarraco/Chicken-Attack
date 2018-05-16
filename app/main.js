@@ -1,6 +1,6 @@
 'use strict';
 
-window.onload = function () {
+window.onload = function() {
   var keyUpIsPress = false;
   var keyDownIsPress = false;
   var keyLeftIsPress = false;
@@ -13,7 +13,7 @@ window.onload = function () {
 
   var hero = document.getElementById('hero');
 
-  document.addEventListener('keydown', function (key) {
+  document.addEventListener('keydown', function(key) {
     switch (key.keyCode) {
       case 38: // key ArrowUp
         arrowUpDown();
@@ -33,7 +33,8 @@ window.onload = function () {
     }
   });
 
-  document.addEventListener('keyup', function (key) {
+  document.addEventListener('keyup', function(key) {
+    startGravity();
     switch (key.keyCode) {
       case 38: // key ArrowUp
         arrowUpUp();
@@ -121,7 +122,7 @@ window.onload = function () {
 
   // movements
   function moveJump() {
-    isJumping = setInterval(function () {
+    isJumping = setInterval(function() {
       if (hero.offsetTop > 0) {
         hero.style.top = hero.offsetTop - 1 + 'px';
       } else {
@@ -131,7 +132,7 @@ window.onload = function () {
   }
 
   function moveCrouch() {
-    isCrouching = setInterval(function () {
+    isCrouching = setInterval(function() {
       if (hero.offsetTop < window.innerHeight - hero.offsetHeight) {
         hero.style.top = hero.offsetTop + 1 + 'px';
       } else {
@@ -141,7 +142,7 @@ window.onload = function () {
   }
 
   function moveLeft() {
-    isMovingLeft = setInterval(function () {
+    isMovingLeft = setInterval(function() {
       if (hero.offsetLeft > 0) {
         hero.style.left = hero.offsetLeft - 1 + 'px';
       } else {
@@ -151,7 +152,7 @@ window.onload = function () {
   }
 
   function moveRight() {
-    isMovingRight = setInterval(function () {
+    isMovingRight = setInterval(function() {
       if (hero.offsetLeft < window.innerWidth - hero.offsetWidth) {
         hero.style.left = hero.offsetLeft + 1 + 'px';
       } else {
@@ -159,8 +160,6 @@ window.onload = function () {
       }
     }, 5);
   }
-
-
 
   function stopJump() {
     clearInterval(isJumping);
@@ -171,31 +170,31 @@ window.onload = function () {
   }
 
   function stopMoveLeft() {
-    clearInterval(isMovingLeft)
+    clearInterval(isMovingLeft);
   }
 
   function stopMoveRight() {
-    clearInterval(isMovingRight)
+    clearInterval(isMovingRight);
   }
-  
-  var vx = 0;
-  var vy = 0;
-  var _gravity = 0.2;
-  var floor = window.innerHeight - hero.offsetHeight - 100;
 
-  var runGravity = setInterval(function() {
-    if (hero.offsetTop < floor) {
-      hero.style.top = gravity(hero.offsetTop) + 'px';
-    } else {
-      clearInterval(runGravity);
+  function startGravity() {
+    var vx = 0;
+    var vy = 0;
+    var _gravity = 0.02;
+
+    var floor = window.innerHeight - hero.offsetHeight - 100;
+
+    var runGravity = setInterval(function() {
+      if (hero.offsetTop < floor) {
+        hero.style.top = gravity(hero.offsetTop) + 'px';
+      } else {
+        clearInterval(runGravity);
+      }
+    }, 10);
+
+    function gravity(position) {
+      vy -= _gravity;
+      return position - vy;
     }
-  }, 5);
-
-  function gravity(position) {
-    console.log('run gravity', position);
-    Math.sqrt(vx * vx + vy * vy);
-    vy -= _gravity;
-    return position - vy;
   }
-
 };
