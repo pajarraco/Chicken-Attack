@@ -1,6 +1,6 @@
 'use strict';
 
-window.onload = function() {
+window.onload = function () {
   var keyUpIsPress = false;
   var keyDownIsPress = false;
   var keyLeftIsPress = false;
@@ -13,7 +13,7 @@ window.onload = function() {
 
   var hero = document.getElementById('hero');
 
-  document.addEventListener('keydown', function(key) {
+  document.addEventListener('keydown', function (key) {
     switch (key.keyCode) {
       case 38: // key ArrowUp
         arrowUpDown();
@@ -33,7 +33,7 @@ window.onload = function() {
     }
   });
 
-  document.addEventListener('keyup', function(key) {
+  document.addEventListener('keyup', function (key) {
     switch (key.keyCode) {
       case 38: // key ArrowUp
         arrowUpUp();
@@ -106,6 +106,7 @@ window.onload = function() {
   function arrowLeftUp() {
     if (keyLeftIsPress) {
       console.log('stop left');
+      stopMoveLeft();
       keyLeftIsPress = false;
     }
   }
@@ -113,13 +114,14 @@ window.onload = function() {
   function arrowRightUp() {
     if (keyRightIsPress) {
       console.log('stop right');
+      stopMoveRight();
       keyRightIsPress = false;
     }
   }
 
   // movements
   function moveJump() {
-    isJumping = setInterval(function() {
+    isJumping = setInterval(function () {
       if (hero.offsetTop > 0) {
         hero.style.top = hero.offsetTop - 1 + 'px';
       } else {
@@ -129,7 +131,7 @@ window.onload = function() {
   }
 
   function moveCrouch() {
-    isCrouching = setInterval(function() {
+    isCrouching = setInterval(function () {
       if (hero.offsetTop < window.innerHeight - hero.offsetHeight) {
         hero.style.top = hero.offsetTop + 1 + 'px';
       } else {
@@ -139,12 +141,26 @@ window.onload = function() {
   }
 
   function moveLeft() {
-    hero.style.left = hero.offsetLeft - 1 + 'px';
+    isMovingLeft = setInterval(function () {
+      if (hero.offsetLeft > 0) {
+        hero.style.left = hero.offsetLeft - 1 + 'px';
+      } else {
+        clearInterval(isMovingLeft);
+      }
+    }, 5);
   }
 
   function moveRight() {
-    hero.style.left = hero.offsetLeft + 1 + 'px';
+    isMovingRight = setInterval(function () {
+      if (hero.offsetLeft < window.innerWidth - hero.offsetWidth) {
+        hero.style.left = hero.offsetLeft + 1 + 'px';
+      } else {
+        clearInterval(isMovingRight);
+      }
+    }, 5);
   }
+
+
 
   function stopJump() {
     clearInterval(isJumping);
@@ -154,10 +170,14 @@ window.onload = function() {
     clearInterval(isCrouching);
   }
 
-  function stopMoveLeft() {}
+  function stopMoveLeft() {
+    clearInterval(isMovingLeft)
+  }
 
-  function stopMoveRight() {}
-
+  function stopMoveRight() {
+    clearInterval(isMovingRight)
+  }
+  
   var vx = 0;
   var vy = 0;
   var _gravity = 0.2;
@@ -177,4 +197,5 @@ window.onload = function() {
     vy -= _gravity;
     return position - vy;
   }
+
 };
