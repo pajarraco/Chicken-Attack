@@ -152,7 +152,7 @@ window.onload = function () {
 
   function moveRight() {
     isMovingRight = setInterval(function () {
-      if (hero.offsetLeft < window.innerWidth - hero.offsetLeft) {
+      if (hero.offsetLeft < window.innerWidth - hero.offsetWidth) {
         hero.style.left = hero.offsetLeft + 1 + 'px';
       } else {
         clearInterval(isMovingRight);
