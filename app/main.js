@@ -157,4 +157,24 @@ window.onload = function() {
   function stopMoveLeft() {}
 
   function stopMoveRight() {}
+
+  var vx = 0;
+  var vy = 0;
+  var _gravity = 0.2;
+  var floor = window.innerHeight - hero.offsetHeight - 100;
+
+  var runGravity = setInterval(function() {
+    if (hero.offsetTop < floor) {
+      hero.style.top = gravity(hero.offsetTop) + 'px';
+    } else {
+      clearInterval(runGravity);
+    }
+  }, 5);
+
+  function gravity(position) {
+    console.log('run gravity', position);
+    Math.sqrt(vx * vx + vy * vy);
+    vy -= _gravity;
+    return position - vy;
+  }
 };
