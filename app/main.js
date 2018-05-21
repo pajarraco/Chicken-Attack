@@ -12,6 +12,10 @@ window.onload = function() {
   var isMovingRight = null;
 
   var hero = document.getElementById('hero');
+  var floor = window.innerHeight - hero.offsetHeight - 100;
+  var _gravity = 0.02;
+
+  startGravity();
 
   document.addEventListener('keydown', function(key) {
     switch (key.keyCode) {
@@ -23,7 +27,7 @@ window.onload = function() {
         arrowDownDown();
         break;
 
-      case 37: // key Arrowleft
+      case 37: // key ArrowLeft
         arrowLeftDown();
         break;
 
@@ -34,17 +38,15 @@ window.onload = function() {
   });
 
   document.addEventListener('keyup', function(key) {
-    startGravity();
     switch (key.keyCode) {
       case 38: // key ArrowUp
-        arrowUpUp();
         break;
 
       case 40: // key ArrowDown
         arrowDownUp();
         break;
 
-      case 37: // key Arrowleft
+      case 37: // key ArrowLeft
         arrowLeftUp();
         break;
 
@@ -58,7 +60,6 @@ window.onload = function() {
   function arrowUpDown() {
     if (!keyUpIsPress) {
       console.log('start jump');
-
       moveJump();
       keyUpIsPress = true;
     }
@@ -88,14 +89,6 @@ window.onload = function() {
     }
   }
 
-  function arrowUpUp() {
-    if (keyUpIsPress) {
-      console.log('stop jump');
-      stopJump();
-      keyUpIsPress = false;
-    }
-  }
-
   function arrowDownUp() {
     if (keyDownIsPress) {
       console.log('stop crouch');
@@ -122,13 +115,23 @@ window.onload = function() {
 
   // movements
   function moveJump() {
+    var maxTop = 150;
+    var vy = -maxTop;
+    var position = hero.offsetTop;
+    console.log('position', position);
     isJumping = setInterval(function() {
-      if (hero.offsetTop > 0) {
-        hero.style.top = hero.offsetTop - 1 + 'px';
+      if (hero.offsetTop <= floor) {
+        vy += 1;
+        var _move = vy < 0 ? maxTop + vy : maxTop - vy;
+        var _top = position - Math.round(_move);
+        console.log('top', _top, _move, maxTop, vy);
+        hero.style.top = _top + 'px';
       } else {
+        hero.style.top = floor + 'px';
         clearInterval(isJumping);
+        keyUpIsPress = false;
       }
-    }, 5);
+    }, 2);
   }
 
   function moveCrouch() {
@@ -180,10 +183,6 @@ window.onload = function() {
   function startGravity() {
     var vx = 0;
     var vy = 0;
-    var _gravity = 0.02;
-
-    var floor = window.innerHeight - hero.offsetHeight - 100;
-
     var runGravity = setInterval(function() {
       if (hero.offsetTop < floor) {
         hero.style.top = gravity(hero.offsetTop) + 'px';
