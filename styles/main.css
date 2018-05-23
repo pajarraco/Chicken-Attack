@@ -12,7 +12,7 @@ body {
 .hero {
   position: absolute;
   z-index: 100;
-  border: 1px solid #222222;
+  /* border: 1px solid #222222; */
   top: 50px;
   left: 100px;
 }
