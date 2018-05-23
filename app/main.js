@@ -1,199 +1,202 @@
 'use strict';
 
-window.onload = function() {
-  var keyUpIsPress = false;
-  var keyDownIsPress = false;
-  var keyLeftIsPress = false;
-  var keyRightIsPress = false;
+setInterval(function() {
+  console.log(hero);
+}, 5000);
 
-  var isJumping = null;
-  var isCrouching = null;
-  var isMovingLeft = null;
-  var isMovingRight = null;
+console.log(hero);
 
-  var hero = document.getElementById('hero');
-  var floor = window.innerHeight - hero.offsetHeight - 100;
-  var _gravity = 0.02;
+// var keyUpIsPress = false;
+// var keyDownIsPress = false;
+// var keyLeftIsPress = false;
+// var keyRightIsPress = false;
 
-  startGravity();
+// var isJumping = null;
+// var isCrouching = null;
+// var isMovingLeft = null;
+// var isMovingRight = null;
 
-  document.addEventListener('keydown', function(key) {
-    switch (key.keyCode) {
-      case 38: // key ArrowUp
-        arrowUpDown();
-        break;
+// var floor = window.innerHeight - hero.offsetHeight - 100;
+// var _gravity = 0.02;
 
-      case 40: // key ArrowDown
-        arrowDownDown();
-        break;
+// startGravity();
 
-      case 37: // key ArrowLeft
-        arrowLeftDown();
-        break;
+// document.addEventListener('keydown', function(key) {
+//   switch (key.keyCode) {
+//     case 38: // key ArrowUp
+//       arrowUpDown();
+//       break;
 
-      case 39: // key ArrowRight
-        arrowRightDown();
-        break;
-    }
-  });
+//     case 40: // key ArrowDown
+//       arrowDownDown();
+//       break;
 
-  document.addEventListener('keyup', function(key) {
-    switch (key.keyCode) {
-      case 38: // key ArrowUp
-        break;
+//     case 37: // key ArrowLeft
+//       arrowLeftDown();
+//       break;
 
-      case 40: // key ArrowDown
-        arrowDownUp();
-        break;
+//     case 39: // key ArrowRight
+//       arrowRightDown();
+//       break;
+//   }
+// });
 
-      case 37: // key ArrowLeft
-        arrowLeftUp();
-        break;
+// document.addEventListener('keyup', function(key) {
+//   switch (key.keyCode) {
+//     case 38: // key ArrowUp
+//       break;
 
-      case 39: // key ArrowRight
-        arrowRightUp();
-        break;
-    }
-  });
+//     case 40: // key ArrowDown
+//       arrowDownUp();
+//       break;
 
-  // key actions
-  function arrowUpDown() {
-    if (!keyUpIsPress) {
-      console.log('start jump');
-      moveJump();
-      keyUpIsPress = true;
-    }
-  }
+//     case 37: // key ArrowLeft
+//       arrowLeftUp();
+//       break;
 
-  function arrowDownDown() {
-    if (!keyDownIsPress) {
-      console.log('start crouch');
-      moveCrouch();
-      keyDownIsPress = true;
-    }
-  }
+//     case 39: // key ArrowRight
+//       arrowRightUp();
+//       break;
+//   }
+// });
 
-  function arrowLeftDown() {
-    if (!keyLeftIsPress) {
-      console.log('start left');
-      moveLeft();
-      keyLeftIsPress = true;
-    }
-  }
+// // key actions
+// function arrowUpDown() {
+//   if (!keyUpIsPress) {
+//     console.log('start jump');
+//     moveJump();
+//     keyUpIsPress = true;
+//   }
+// }
 
-  function arrowRightDown() {
-    if (!keyRightIsPress) {
-      console.log('start right');
-      moveRight();
-      keyRightIsPress = true;
-    }
-  }
+// function arrowDownDown() {
+//   if (!keyDownIsPress) {
+//     console.log('start crouch');
+//     moveCrouch();
+//     keyDownIsPress = true;
+//   }
+// }
 
-  function arrowDownUp() {
-    if (keyDownIsPress) {
-      console.log('stop crouch');
-      stopCrouch();
-      keyDownIsPress = false;
-    }
-  }
+// function arrowLeftDown() {
+//   if (!keyLeftIsPress) {
+//     console.log('start left');
+//     moveLeft();
+//     keyLeftIsPress = true;
+//   }
+// }
 
-  function arrowLeftUp() {
-    if (keyLeftIsPress) {
-      console.log('stop left');
-      stopMoveLeft();
-      keyLeftIsPress = false;
-    }
-  }
+// function arrowRightDown() {
+//   if (!keyRightIsPress) {
+//     console.log('start right');
+//     moveRight();
+//     keyRightIsPress = true;
+//   }
+// }
 
-  function arrowRightUp() {
-    if (keyRightIsPress) {
-      console.log('stop right');
-      stopMoveRight();
-      keyRightIsPress = false;
-    }
-  }
+// function arrowDownUp() {
+//   if (keyDownIsPress) {
+//     console.log('stop crouch');
+//     stopCrouch();
+//     keyDownIsPress = false;
+//   }
+// }
 
-  // movements
-  function moveJump() {
-    var maxTop = 150;
-    var vy = -maxTop;
-    var position = hero.offsetTop;
-    console.log('position', position);
-    isJumping = setInterval(function() {
-      if (hero.offsetTop <= floor) {
-        vy += 1;
-        var _move = vy < 0 ? maxTop + vy : maxTop - vy;
-        var _top = position - Math.round(_move);
-        console.log('top', _top, _move, maxTop, vy);
-        hero.style.top = _top + 'px';
-      } else {
-        hero.style.top = floor + 'px';
-        clearInterval(isJumping);
-        keyUpIsPress = false;
-      }
-    }, 2);
-  }
+// function arrowLeftUp() {
+//   if (keyLeftIsPress) {
+//     console.log('stop left');
+//     stopMoveLeft();
+//     keyLeftIsPress = false;
+//   }
+// }
 
-  function moveCrouch() {
-    isCrouching = setInterval(function() {
-      if (hero.offsetTop < window.innerHeight - hero.offsetHeight) {
-        hero.style.top = hero.offsetTop + 1 + 'px';
-      } else {
-        clearInterval(isCrouching);
-      }
-    }, 5);
-  }
+// function arrowRightUp() {
+//   if (keyRightIsPress) {
+//     console.log('stop right');
+//     stopMoveRight();
+//     keyRightIsPress = false;
+//   }
+// }
 
-  function moveLeft() {
-    isMovingLeft = setInterval(function() {
-      if (hero.offsetLeft > 0) {
-        hero.style.left = hero.offsetLeft - 1 + 'px';
-      } else {
-        clearInterval(isMovingLeft);
-      }
-    }, 5);
-  }
+// // movements
+// function moveJump() {
+//   var maxTop = 150;
+//   var vy = -maxTop;
+//   var position = hero.offsetTop;
+//   console.log('position', position);
+//   isJumping = setInterval(function() {
+//     if (hero.offsetTop <= floor) {
+//       vy += 1;
+//       var _move = vy < 0 ? maxTop + vy : maxTop - vy;
+//       var _top = position - Math.round(_move);
+//       console.log('top', _top, _move, maxTop, vy);
+//       hero.style.top = _top + 'px';
+//     } else {
+//       hero.style.top = floor + 'px';
+//       clearInterval(isJumping);
+//       keyUpIsPress = false;
+//     }
+//   }, 2);
+// }
 
-  function moveRight() {
-    isMovingRight = setInterval(function() {
-      if (hero.offsetLeft < window.innerWidth - hero.offsetWidth) {
-        hero.style.left = hero.offsetLeft + 1 + 'px';
-      } else {
-        clearInterval(isMovingRight);
-      }
-    }, 5);
-  }
+// function moveCrouch() {
+//   isCrouching = setInterval(function() {
+//     if (hero.offsetTop < window.innerHeight - hero.offsetHeight) {
+//       hero.style.top = hero.offsetTop + 1 + 'px';
+//     } else {
+//       clearInterval(isCrouching);
+//     }
+//   }, 5);
+// }
 
-  function stopJump() {
-    clearInterval(isJumping);
-  }
+// function moveLeft() {
+//   isMovingLeft = setInterval(function() {
+//     if (hero.offsetLeft > 0) {
+//       hero.style.left = hero.offsetLeft - 1 + 'px';
+//     } else {
+//       clearInterval(isMovingLeft);
+//     }
+//   }, 5);
+// }
 
-  function stopCrouch() {
-    clearInterval(isCrouching);
-  }
+// function moveRight() {
+//   isMovingRight = setInterval(function() {
+//     if (hero.offsetLeft < window.innerWidth - hero.offsetWidth) {
+//       hero.style.left = hero.offsetLeft + 1 + 'px';
+//     } else {
+//       clearInterval(isMovingRight);
+//     }
+//   }, 5);
+// }
 
-  function stopMoveLeft() {
-    clearInterval(isMovingLeft);
-  }
+// function stopJump() {
+//   clearInterval(isJumping);
+// }
 
-  function stopMoveRight() {
-    clearInterval(isMovingRight);
-  }
+// function stopCrouch() {
+//   clearInterval(isCrouching);
+// }
 
-  function startGravity() {
-    var vx = 0;
-    var vy = 0;
-    var runGravity = setInterval(function() {
-      if (hero.offsetTop < floor) {
-        hero.style.top = gravity(hero.offsetTop) + 'px';
-      } else {
-        clearInterval(runGravity);
-      }
-    }, 10);
+// function stopMoveLeft() {
+//   clearInterval(isMovingLeft);
+// }
 
-    function gravity(position) {
-      vy -= _gravity;
-      return position - vy;
-    }
-  }
-};
+// function stopMoveRight() {
+//   clearInterval(isMovingRight);
+// }
+
+// function startGravity() {
+//   var vx = 0;
+//   var vy = 0;
+//   var runGravity = setInterval(function() {
+//     if (hero.offsetTop < floor) {
+//       hero.style.top = gravity(hero.offsetTop) + 'px';
+//     } else {
+//       clearInterval(runGravity);
+//     }
+//   }, 10);
+
+//   function gravity(position) {
+//     vy -= _gravity;
+//     return position - vy;
+//   }
+// }
