@@ -3,11 +3,12 @@
 function loadController() {
   console.log('load controllers');
 
+  var keyRightPress = false;
+
   document.addEventListener('keydown', function(key) {
     switch (key.keyCode) {
       case 38: // key ArrowUp
-        console.log('keyup');
-
+        console.log('keyUp');
         arrowUpDown();
         break;
       case 40: // key ArrowDown
@@ -19,7 +20,11 @@ function loadController() {
         break;
 
       case 39: // key ArrowRight
-        // arrowRightDown();
+        if (!keyRightPress) {
+          console.log('keyRight');
+          keyRightPress = true;
+          arrowRightDown();
+        }
         break;
     }
   });
@@ -38,14 +43,23 @@ function loadController() {
         break;
 
       case 39: // key ArrowRight
-        // arrowRightDown();
+        keyRightPress = false;
+        arrowRightUp();
         break;
     }
   });
 }
 
 function arrowUpDown() {
-  console.log('start jump');
   hero.movement = 'jump';
   hero.state = 'jumping';
+}
+
+function arrowRightDown() {
+  hero.movement = 'right';
+  hero.state = 'movingRight';
+}
+
+function arrowRightUp() {
+  hero.state = 'still';
 }

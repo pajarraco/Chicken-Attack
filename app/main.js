@@ -11,10 +11,10 @@ window.onload = function() {
   setInterval(function() {
     console.log(hero);
     // check for movement of hero
-    if (hero.movement || hero.state !== 'still') {
-      // run movement of hero
-      hero = runMovement(hero);
-    }
+    // if (hero.movement || hero.state !== 'still') {
+    // run movement of hero
+    setHero(runMovement(hero));
+    // }
   }, 5000); // time repeat in milliseconds
 };
 
