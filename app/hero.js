@@ -12,10 +12,13 @@ function loadHero() {
   var component = document.getElementById('hero');
   hero.top = component.offsetTop;
   hero.left = component.offsetLeft;
-  hero.width = component.offsetLeft;
-  hero.height = component.offsetTop;
+  hero.width = component.offsetWidth;
+  hero.height = component.offsetHeight;
 }
 
 function setHero(_hero) {
+  var component = document.getElementById('hero');
+  component.style.left = _hero.left + 'px';
+  component.style.top = _hero.top + 'px';
   hero = _hero;
 }
