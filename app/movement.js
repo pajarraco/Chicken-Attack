@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var viewPort = {
   width: window.innerWidth,
@@ -14,14 +14,20 @@ function runMovement(person) {
   if (person.movement) {
     // select type of movement
     switch (person.movement) {
-      case 'jump':
-        console.log('move jump');
+      case "jump":
+        console.log("move jump");
         newPosition = person;
         break;
 
-      case 'right':
-        console.log('move right');
+      case "right":
+        console.log("move right");
         newPosition = movingRight(person);
+        newPosition.movement = null;
+        break;
+
+      case "left":
+        console.log("move left");
+        newPosition = movingLeft(person);
         newPosition.movement = null;
         break;
 
@@ -33,14 +39,19 @@ function runMovement(person) {
   } else {
     // select type of movement by state
     switch (person.state) {
-      case 'jumping':
-        console.log('state jumping');
+      case "jumping":
+        console.log("state jumping");
         newPosition = person;
         break;
 
-      case 'movingRight':
-        console.log('state moving right');
+      case "movingRight":
+        console.log("state moving right");
         newPosition = movingRight(person);
+        break;
+
+      case "movingLeft":
+        console.log("state moving left");
+        newPosition = movingLeft(person);
         break;
 
       default:
@@ -57,7 +68,17 @@ function movingRight(person) {
     person.left = person.left + 1;
   } else {
     person.movement = null;
-    person.state = 'still';
+    person.state = "still";
+  }
+  return person;
+}
+
+function movingLeft(person) {
+  if (person.left + person.width < viewPort.width) {
+    person.left = person.left - 1;
+  } else {
+    person.movement = null;
+    person.state = "still";
   }
   return person;
 }
