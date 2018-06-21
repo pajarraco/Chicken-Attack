@@ -1,27 +1,33 @@
-'use strict';
+"use strict";
 
 function loadController() {
-  console.log('load controllers');
+  console.log("load controllers");
 
   var keyRightPress = false;
+  var keyLeftPress = false;
 
-  document.addEventListener('keydown', function(key) {
+  document.addEventListener("keydown", function(key) {
     switch (key.keyCode) {
       case 38: // key ArrowUp
-        console.log('keyUp');
+        console.log("keyUp");
         arrowUpDown();
         break;
+
       case 40: // key ArrowDown
         // arrowDownDown();
         break;
 
       case 37: // key ArrowLeft
-        // arrowLeftDown();
+        if (!keyLeftPress) {
+          console.log("keyLeft");
+          keyLeftPress = true;
+          arrowLeftDown();
+        }
         break;
 
       case 39: // key ArrowRight
         if (!keyRightPress) {
-          console.log('keyRight');
+          console.log("keyRight");
           keyRightPress = true;
           arrowRightDown();
         }
@@ -29,7 +35,7 @@ function loadController() {
     }
   });
 
-  document.addEventListener('keyup', function(key) {
+  document.addEventListener("keyup", function(key) {
     switch (key.keyCode) {
       case 38: // key ArrowUp
         // arrowUpDown();
@@ -39,7 +45,8 @@ function loadController() {
         break;
 
       case 37: // key ArrowLeft
-        // arrowLeftDown();
+        keyLeftPress = false;
+        arrowLeftUp();
         break;
 
       case 39: // key ArrowRight
@@ -51,15 +58,24 @@ function loadController() {
 }
 
 function arrowUpDown() {
-  hero.movement = 'jump';
-  hero.state = 'jumping';
+  hero.movement = "jump";
+  hero.state = "jumping";
 }
 
 function arrowRightDown() {
-  hero.movement = 'right';
-  hero.state = 'movingRight';
+  hero.movement = "right";
+  hero.state = "movingRight";
 }
 
 function arrowRightUp() {
-  hero.state = 'still';
+  hero.state = "still";
+}
+
+function arrowLeftDown() {
+  hero.movement = "left";
+  hero.state = "movingLeft";
+}
+
+function arrowLeftUp() {
+  hero.state = "still";
 }

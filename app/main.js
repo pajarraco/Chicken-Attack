@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 // run when all elements in documents are loaded
 window.onload = function() {
@@ -15,7 +15,7 @@ window.onload = function() {
     // run movement of hero
     setHero(runMovement(hero));
     // }
-  }, 5000); // time repeat in milliseconds
+  }, 50); // time repeat in milliseconds
 };
 
 // var keyUpIsPress = false;
