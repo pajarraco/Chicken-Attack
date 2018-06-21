@@ -5,7 +5,7 @@ var hero = {
   width: 0,
   height: 0,
   movement: null,
-  state: 'still'
+  state: []
 };
 
 function loadHero() {
@@ -17,6 +17,8 @@ function loadHero() {
 }
 
 function setHero(_hero) {
+  // console.log('new hero', _hero);
+
   var component = document.getElementById('hero');
   component.style.left = _hero.left + 'px';
   component.style.top = _hero.top + 'px';
