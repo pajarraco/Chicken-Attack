@@ -1,15 +1,15 @@
-"use strict";
+'use strict';
 
 function loadController() {
-  console.log("load controllers");
+  console.log('load controllers');
 
   var keyRightPress = false;
   var keyLeftPress = false;
 
-  document.addEventListener("keydown", function(key) {
+  document.addEventListener('keydown', function(key) {
     switch (key.keyCode) {
       case 38: // key ArrowUp
-        console.log("keyUp");
+        console.log('keyUp');
         arrowUpDown();
         break;
 
@@ -19,23 +19,25 @@ function loadController() {
 
       case 37: // key ArrowLeft
         if (!keyLeftPress) {
-          console.log("keyLeft");
+          console.log('keyLeft');
           keyLeftPress = true;
+          keyRightPress = false;
           arrowLeftDown();
         }
         break;
 
       case 39: // key ArrowRight
         if (!keyRightPress) {
-          console.log("keyRight");
+          console.log('keyRight');
           keyRightPress = true;
+          keyLeftPress = false;
           arrowRightDown();
         }
         break;
     }
   });
 
-  document.addEventListener("keyup", function(key) {
+  document.addEventListener('keyup', function(key) {
     switch (key.keyCode) {
       case 38: // key ArrowUp
         // arrowUpDown();
@@ -46,36 +48,43 @@ function loadController() {
 
       case 37: // key ArrowLeft
         keyLeftPress = false;
-        arrowLeftUp();
+        if (!keyRightPress) {
+          arrowLeftUp();
+        }
         break;
 
       case 39: // key ArrowRight
         keyRightPress = false;
-        arrowRightUp();
+        if (!keyLeftPress) {
+          arrowRightUp();
+        }
         break;
     }
   });
 }
 
 function arrowUpDown() {
-  hero.movement = "jump";
-  hero.state = "jumping";
+  hero.movement = 'jump';
 }
 
 function arrowRightDown() {
-  hero.movement = "right";
-  hero.state = "movingRight";
+  hero.movement = 'right';
+  hero.state.push('movingRight');
+  arrowLeftUp();
 }
 
 function arrowRightUp() {
-  hero.state = "still";
+  var i = hero.state.indexOf('movingRight');
+  hero.state.splice(i, 1);
 }
 
 function arrowLeftDown() {
-  hero.movement = "left";
-  hero.state = "movingLeft";
+  hero.movement = 'left';
+  hero.state.push('movingLeft');
+  arrowRightUp();
 }
 
 function arrowLeftUp() {
-  hero.state = "still";
+  var i = hero.state.indexOf('movingLeft');
+  hero.state.splice(i, 1);
 }

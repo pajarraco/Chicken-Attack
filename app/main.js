@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // run when all elements in documents are loaded
 window.onload = function() {
@@ -9,13 +9,13 @@ window.onload = function() {
 
   // run timer - this is the circle of the game
   setInterval(function() {
-    console.log(hero);
+    // console.log(hero);
     // check for movement of hero
     // if (hero.movement || hero.state !== 'still') {
     // run movement of hero
     setHero(runMovement(hero));
     // }
-  }, 50); // time repeat in milliseconds
+  }, 5); // time repeat in milliseconds
 };
 
 // var keyUpIsPress = false;

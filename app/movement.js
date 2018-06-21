@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var viewPort = {
   width: window.innerWidth,
@@ -7,6 +7,10 @@ var viewPort = {
   left: 0
 };
 
+var maxJump = 150;
+var stateJump = JSON.stringify(JSON.parse(maxJump));
+var floor = 10;
+
 function runMovement(person) {
   // create new position of the person
   var newPosition;
@@ -14,50 +18,49 @@ function runMovement(person) {
   if (person.movement) {
     // select type of movement
     switch (person.movement) {
-      case "jump":
-        console.log("move jump");
-        newPosition = person;
+      case 'jump':
+        newPosition = jump(person);
         break;
 
-      case "right":
-        console.log("move right");
+      case 'right':
+        console.log('move right');
         newPosition = movingRight(person);
-        newPosition.movement = null;
         break;
 
-      case "left":
-        console.log("move left");
+      case 'left':
+        console.log('move left');
         newPosition = movingLeft(person);
-        newPosition.movement = null;
         break;
 
       default:
         newPosition = person;
         break;
     }
+    newPosition.movement = null;
     // run when not new movement is selected
   } else {
     // select type of movement by state
-    switch (person.state) {
-      case "jumping":
-        console.log("state jumping");
-        newPosition = person;
-        break;
+    if (person.state.length === 0) {
+      newPosition = person;
+    } else {
+      for (var i = 0; i < person.state.length; i++) {
+        switch (person.state[i]) {
+          case 'jumping':
+            console.log('state jumping');
+            newPosition = jumping(person);
+            break;
 
-      case "movingRight":
-        console.log("state moving right");
-        newPosition = movingRight(person);
-        break;
+          case 'movingRight':
+            console.log('state moving right');
+            newPosition = movingRight(person);
+            break;
 
-      case "movingLeft":
-        console.log("state moving left");
-        newPosition = movingLeft(person);
-        break;
-
-      default:
-        // or still
-        newPosition = person;
-        break;
+          case 'movingLeft':
+            console.log('state moving left');
+            newPosition = movingLeft(person);
+            break;
+        }
+      }
     }
   }
   return gravity(newPosition);
@@ -68,24 +71,52 @@ function movingRight(person) {
     person.left = person.left + 1;
   } else {
     person.movement = null;
-    person.state = "still";
+    var i = person.state.indexOf('movingRight');
+    person.state.splice(i, 1);
   }
   return person;
 }
 
 function movingLeft(person) {
-  if (person.left + person.width < viewPort.width) {
+  if (person.left > viewPort.left) {
     person.left = person.left - 1;
   } else {
     person.movement = null;
-    person.state = "still";
+    var i = person.state.indexOf('movingLeft');
+    person.state.splice(i, 1);
+  }
+  return person;
+}
+
+function jump(person) {
+  if (person.state.indexOf('jumping') === -1) {
+    if (person.top + person.height === viewPort.height - floor) {
+      stateJump = 0;
+      person.state.push('jumping');
+    } else {
+      stateJump = JSON.stringify(JSON.parse(maxJump));
+    }
+  }
+  return person;
+}
+
+function jumping(person) {
+  if (stateJump < maxJump) {
+    person.top = person.top - 1;
+    stateJump = stateJump + 1;
+  } else {
+    person.movement = null;
+    var i = person.state.indexOf('jumping');
+    person.state.splice(i, 1);
   }
   return person;
 }
 
 function gravity(person) {
-  if (person.top + person.height < viewPort.height - 10) {
-    person.top = person.top + 1;
+  if (person.state.indexOf('jumping') === -1) {
+    if (person.top + person.height < viewPort.height - floor) {
+      person.top = person.top + 1;
+    }
   }
   return person;
 }
