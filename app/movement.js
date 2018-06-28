@@ -7,9 +7,11 @@ var viewPort = {
   left: 0
 };
 
-var maxJump = 150;
+var maxJump = 100;
 var stateJump = JSON.stringify(JSON.parse(maxJump));
 var floor = 10;
+var GRAVITY = 8;
+var acceleration = GRAVITY / stateJump;
 
 function runMovement(person) {
   // create new position of the person
@@ -40,6 +42,8 @@ function runMovement(person) {
     // run when not new movement is selected
   } else {
     // select type of movement by state
+    // console.log('state', person.state);
+
     if (person.state.length === 0) {
       newPosition = person;
     } else {
@@ -67,6 +71,7 @@ function runMovement(person) {
 }
 
 function movingRight(person) {
+  person.img = 'assets/hero-still.png';
   if (person.left + person.width < viewPort.width) {
     person.left = person.left + 1;
   } else {
@@ -78,6 +83,7 @@ function movingRight(person) {
 }
 
 function movingLeft(person) {
+  person.img = 'assets/boss-01.png';
   if (person.left > viewPort.left) {
     person.left = person.left - 1;
   } else {
@@ -102,7 +108,7 @@ function jump(person) {
 
 function jumping(person) {
   if (stateJump < maxJump) {
-    person.top = person.top - 1;
+    person.top = person.top - 3;
     stateJump = stateJump + 1;
   } else {
     person.movement = null;
@@ -115,7 +121,7 @@ function jumping(person) {
 function gravity(person) {
   if (person.state.indexOf('jumping') === -1) {
     if (person.top + person.height < viewPort.height - floor) {
-      person.top = person.top + 1;
+      person.top = person.top + 2;
     }
   }
   return person;
