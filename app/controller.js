@@ -75,7 +75,9 @@ function arrowRightDown() {
 
 function arrowRightUp() {
   var i = hero.state.indexOf('movingRight');
-  hero.state.splice(i, 1);
+  if (i != -1) {
+    hero.state.splice(i, 1);
+  }
 }
 
 function arrowLeftDown() {
@@ -86,5 +88,7 @@ function arrowLeftDown() {
 
 function arrowLeftUp() {
   var i = hero.state.indexOf('movingLeft');
-  hero.state.splice(i, 1);
+  if (i != -1) {
+    hero.state.splice(i, 1);
+  }
 }
