@@ -9,7 +9,7 @@ var viewPort = {
 
 var maxJump = 100;
 var stateJump = JSON.stringify(JSON.parse(maxJump));
-var floor = 10;
+var floor = 100;
 var GRAVITY = 8;
 var acceleration = GRAVITY / stateJump;
 
@@ -83,7 +83,7 @@ function movingRight(person) {
 }
 
 function movingLeft(person) {
-  person.img = 'assets/boss-01.png';
+  person.img = 'assets/hero-left.png';
   if (person.left > viewPort.left) {
     person.left = person.left - 1;
   } else {
