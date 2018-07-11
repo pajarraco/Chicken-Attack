@@ -6,11 +6,18 @@ function loadController() {
   var keyRightPress = false;
   var keyLeftPress = false;
 
-  document.addEventListener('keydown', function(key) {
+  for (let i = 0; i < store.length; i++) {
+    if (store[i].id === 'mrwick') {
+      var hero = store[i];
+    }
+
+  }
+
+  document.addEventListener('keydown', function (key) {
     switch (key.keyCode) {
       case 38: // key ArrowUp
         console.log('keyUp');
-        arrowUpDown();
+        arrowUpDown(hero);
         break;
 
       case 40: // key ArrowDown
@@ -22,7 +29,7 @@ function loadController() {
           console.log('keyLeft');
           keyLeftPress = true;
           keyRightPress = false;
-          arrowLeftDown();
+          arrowLeftDown(hero);
         }
         break;
 
@@ -31,13 +38,13 @@ function loadController() {
           console.log('keyRight');
           keyRightPress = true;
           keyLeftPress = false;
-          arrowRightDown();
+          arrowRightDown(hero);
         }
         break;
     }
   });
 
-  document.addEventListener('keyup', function(key) {
+  document.addEventListener('keyup', function (key) {
     switch (key.keyCode) {
       case 38: // key ArrowUp
         // arrowUpDown();
@@ -49,44 +56,44 @@ function loadController() {
       case 37: // key ArrowLeft
         keyLeftPress = false;
         if (!keyRightPress) {
-          arrowLeftUp();
+          arrowLeftUp(hero);
         }
         break;
 
       case 39: // key ArrowRight
         keyRightPress = false;
         if (!keyLeftPress) {
-          arrowRightUp();
+          arrowRightUp(hero);
         }
         break;
     }
   });
 }
 
-function arrowUpDown() {
+function arrowUpDown(hero) {
   hero.movement = 'jump';
 }
 
-function arrowRightDown() {
+function arrowRightDown(hero) {
   hero.movement = 'right';
   hero.state.push('movingRight');
-  arrowLeftUp();
+  arrowLeftUp(hero);
 }
 
-function arrowRightUp() {
+function arrowRightUp(hero) {
   var i = hero.state.indexOf('movingRight');
   if (i != -1) {
     hero.state.splice(i, 1);
   }
 }
 
-function arrowLeftDown() {
+function arrowLeftDown(hero) {
   hero.movement = 'left';
   hero.state.push('movingLeft');
-  arrowRightUp();
+  arrowRightUp(hero);
 }
 
-function arrowLeftUp() {
+function arrowLeftUp(hero) {
   var i = hero.state.indexOf('movingLeft');
   if (i != -1) {
     hero.state.splice(i, 1);

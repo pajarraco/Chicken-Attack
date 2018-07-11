@@ -1,22 +1,26 @@
 'use strict';
 
 // run when all elements in documents are loaded
-window.onload = function() {
+window.onload = function () {
   // load variable for hero
-  loadHero('hero');
+  loadHero();
 
   // load controller
   loadController();
 
   // run timer - this is the circle of the game
-  setInterval(function() {
+  setInterval(function () {
     // console.log(hero);
     // check for movement of hero
     // if (hero.movement || hero.state !== 'still') {
     // run movement of hero
-    setHero(runMovement(hero));
+
+    for (let i = 0; i < store.length; i++) {
+      setHero(runMovement(store[i]));
+    }
+
     // }
-  }, 5); // time repeat in milliseconds
+  }, 5000); // time repeat in milliseconds
 };
 
 // var keyUpIsPress = false;
