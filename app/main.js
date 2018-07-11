@@ -3,7 +3,8 @@
 // run when all elements in documents are loaded
 window.onload = function() {
   // load variable for hero
-  loadHero();
+  loadHero('hero');
+
   // load controller
   loadController();
 
