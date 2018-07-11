@@ -71,7 +71,7 @@ function runMovement(person) {
 }
 
 function movingRight(person) {
-  person.img = 'assets/hero-still.png';
+  person.img = person.images.base;
   if (person.left + person.width < viewPort.width) {
     person.left = person.left + 1;
   } else {
@@ -83,7 +83,7 @@ function movingRight(person) {
 }
 
 function movingLeft(person) {
-  person.img = 'assets/hero-left.png';
+  person.img = person.images.left;
   if (person.left > viewPort.left) {
     person.left = person.left - 1;
   } else {
