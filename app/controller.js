@@ -1,23 +1,16 @@
 'use strict';
 
-function loadController() {
+function loadController(index) {
   console.log('load controllers');
 
   var keyRightPress = false;
   var keyLeftPress = false;
 
-  for (let i = 0; i < store.length; i++) {
-    if (store[i].id === 'mrwick') {
-      var hero = store[i];
-    }
-
-  }
-
   document.addEventListener('keydown', function (key) {
     switch (key.keyCode) {
       case 38: // key ArrowUp
         console.log('keyUp');
-        arrowUpDown(hero);
+        arrowUpDown();
         break;
 
       case 40: // key ArrowDown
@@ -29,7 +22,7 @@ function loadController() {
           console.log('keyLeft');
           keyLeftPress = true;
           keyRightPress = false;
-          arrowLeftDown(hero);
+          arrowLeftDown();
         }
         break;
 
@@ -38,7 +31,7 @@ function loadController() {
           console.log('keyRight');
           keyRightPress = true;
           keyLeftPress = false;
-          arrowRightDown(hero);
+          arrowRightDown();
         }
         break;
     }
@@ -56,46 +49,47 @@ function loadController() {
       case 37: // key ArrowLeft
         keyLeftPress = false;
         if (!keyRightPress) {
-          arrowLeftUp(hero);
+          arrowLeftUp();
         }
         break;
 
       case 39: // key ArrowRight
         keyRightPress = false;
         if (!keyLeftPress) {
-          arrowRightUp(hero);
+          arrowRightUp();
         }
         break;
     }
   });
-}
 
-function arrowUpDown(hero) {
-  hero.movement = 'jump';
-}
 
-function arrowRightDown(hero) {
-  hero.movement = 'right';
-  hero.state.push('movingRight');
-  arrowLeftUp(hero);
-}
-
-function arrowRightUp(hero) {
-  var i = hero.state.indexOf('movingRight');
-  if (i != -1) {
-    hero.state.splice(i, 1);
+  function arrowUpDown() {
+    store[index].movement = 'jump';
   }
-}
 
-function arrowLeftDown(hero) {
-  hero.movement = 'left';
-  hero.state.push('movingLeft');
-  arrowRightUp(hero);
-}
+  function arrowRightDown() {
+    store[index].movement = 'right';
+    store[index].state.push('movingRight');
+    arrowLeftUp();
+  }
 
-function arrowLeftUp(hero) {
-  var i = hero.state.indexOf('movingLeft');
-  if (i != -1) {
-    hero.state.splice(i, 1);
+  function arrowRightUp() {
+    var i = store[index].state.indexOf('movingRight');
+    if (i != -1) {
+      store[index].state.splice(i, 1);
+    }
+  }
+
+  function arrowLeftDown() {
+    store[index].movement = 'left';
+    store[index].state.push('movingLeft');
+    arrowRightUp();
+  }
+
+  function arrowLeftUp() {
+    var i = store[index].state.indexOf('movingLeft');
+    if (i != -1) {
+      store[index].state.splice(i, 1);
+    }
   }
 }

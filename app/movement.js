@@ -7,9 +7,9 @@ var viewPort = {
   left: 0
 };
 
-var maxJump = 100;
+var maxJump = 70;
 var stateJump = JSON.stringify(JSON.parse(maxJump));
-var floor = 100;
+var floor = 50;
 var GRAVITY = 8;
 var acceleration = GRAVITY / stateJump;
 
