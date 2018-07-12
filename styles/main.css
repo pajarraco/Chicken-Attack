@@ -23,4 +23,5 @@ body {
 
 .hero > img {
   width: 110px;
+  overflow: hidden;
 }

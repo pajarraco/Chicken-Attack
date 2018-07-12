@@ -2,25 +2,24 @@
 
 // run when all elements in documents are loaded
 window.onload = function () {
-  // load variable for hero
-  loadHero();
 
+  var mrWick = loadHero()
   // load controller
-  loadController();
+  loadController(mrWick);
 
   // run timer - this is the circle of the game
   setInterval(function () {
-    // console.log(hero);
+    console.log(store);
     // check for movement of hero
     // if (hero.movement || hero.state !== 'still') {
     // run movement of hero
 
     for (let i = 0; i < store.length; i++) {
-      setHero(runMovement(store[i]));
+      updatePerson(i, runMovement(store[i]));
     }
 
     // }
-  }, 5000); // time repeat in milliseconds
+  }, 5); // time repeat in milliseconds
 };
 
 // var keyUpIsPress = false;
