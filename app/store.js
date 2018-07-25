@@ -8,6 +8,9 @@ function addPerson(person) {
 }
 
 function updatePerson(index, newPerson) {
+  if (newPerson.type === 'chicken') {
+    newPerson = chickenMomevement(newPerson);
+  }
   store[index] = newPerson;
   var component = document.getElementById(newPerson.id)
   var img = component.children;

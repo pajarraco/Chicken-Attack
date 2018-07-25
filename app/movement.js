@@ -25,12 +25,12 @@ function runMovement(person) {
         break;
 
       case 'right':
-        console.log('move right');
+        // console.log('move right');
         newPosition = movingRight(person);
         break;
 
       case 'left':
-        console.log('move left');
+        // console.log('move left');
         newPosition = movingLeft(person);
         break;
 
@@ -50,17 +50,17 @@ function runMovement(person) {
       for (var i = 0; i < person.state.length; i++) {
         switch (person.state[i]) {
           case 'jumping':
-            console.log('state jumping');
+            // console.log('state jumping');
             newPosition = jumping(person);
             break;
 
           case 'movingRight':
-            console.log('state moving right');
+            // console.log('state moving right');
             newPosition = movingRight(person);
             break;
 
           case 'movingLeft':
-            console.log('state moving left');
+            // console.log('state moving left');
             newPosition = movingLeft(person);
             break;
         }

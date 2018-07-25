@@ -3,13 +3,19 @@
 // run when all elements in documents are loaded
 window.onload = function () {
 
-  var mrWick = loadHero()
+  var mrWick = loadHero();
   // load controller
   loadController(mrWick);
 
+  loadChicken();
+  setTimeout(function () {
+    loadChicken();
+  }, 1000)
+
+
   // run timer - this is the circle of the game
   setInterval(function () {
-    console.log(store);
+    // console.log(store);
     // check for movement of hero
     // if (hero.movement || hero.state !== 'still') {
     // run movement of hero

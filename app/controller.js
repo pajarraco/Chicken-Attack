@@ -1,7 +1,7 @@
 'use strict';
 
 function loadController(index) {
-  console.log('load controllers');
+  // console.log('load controllers');
 
   var keyRightPress = false;
   var keyLeftPress = false;
@@ -9,7 +9,7 @@ function loadController(index) {
   document.addEventListener('keydown', function (key) {
     switch (key.keyCode) {
       case 38: // key ArrowUp
-        console.log('keyUp');
+        // console.log('keyUp');
         arrowUpDown();
         break;
 
@@ -19,7 +19,7 @@ function loadController(index) {
 
       case 37: // key ArrowLeft
         if (!keyLeftPress) {
-          console.log('keyLeft');
+          // console.log('keyLeft');
           keyLeftPress = true;
           keyRightPress = false;
           arrowLeftDown();
@@ -28,7 +28,7 @@ function loadController(index) {
 
       case 39: // key ArrowRight
         if (!keyRightPress) {
-          console.log('keyRight');
+          // console.log('keyRight');
           keyRightPress = true;
           keyLeftPress = false;
           arrowRightDown();

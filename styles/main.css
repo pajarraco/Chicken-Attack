@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  overflow: hidden;
 }
 .stage {
   position: absolute;
@@ -11,7 +12,7 @@ body {
   z-index: -1;
 }
 
-.hero {
+.hero, .chicken {
   position: absolute;
   z-index: 100;
   top: 50px;
@@ -21,7 +22,8 @@ body {
   display: flex;
 }
 
-.hero > img {
+.hero > img, .chicken > img {
   width: 110px;
   overflow: hidden;
 }
+
