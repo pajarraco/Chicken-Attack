@@ -3,6 +3,7 @@
 function defaultHero() {
   return {
     id: 'mrwick',
+    type: 'hero',
     movement: null,
     state: [],
     img: 'assets/hero-still.png',
@@ -38,4 +39,3 @@ function loadHero() {
   hero.height = component.offsetHeight;
   return addPerson(hero);
 }
-
