@@ -63,6 +63,10 @@ function runMovement(person) {
             // console.log('state moving left');
             newPosition = movingLeft(person);
             break;
+
+          case 'dying':
+            newPosition = dying(person);
+            break;
         }
       }
     }
@@ -124,5 +128,10 @@ function gravity(person) {
       person.top = person.top + 2;
     }
   }
+  return person;
+}
+
+function dying(person) {
+  person.top = person.top + 3;
   return person;
 }

@@ -6,7 +6,7 @@ function loadController(index) {
   var keyRightPress = false;
   var keyLeftPress = false;
 
-  document.addEventListener('keydown', function (key) {
+  document.addEventListener('keydown', function(key) {
     switch (key.keyCode) {
       case 38: // key ArrowUp
         // console.log('keyUp');
@@ -37,7 +37,7 @@ function loadController(index) {
     }
   });
 
-  document.addEventListener('keyup', function (key) {
+  document.addEventListener('keyup', function(key) {
     switch (key.keyCode) {
       case 38: // key ArrowUp
         // arrowUpDown();
@@ -61,7 +61,6 @@ function loadController(index) {
         break;
     }
   });
-
 
   function arrowUpDown() {
     store[index].movement = 'jump';
