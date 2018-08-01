@@ -12,18 +12,20 @@ body {
   z-index: -1;
 }
 
-.hero, .chicken {
+.hero,
+.chicken {
   position: absolute;
   z-index: 100;
   top: 50px;
-  height: 90px;
-  width: 90px;
+  height: 50px;
+  width: 50px;
   justify-content: center;
   display: flex;
+  border: 1px solid #239874;
 }
 
-.hero > img, .chicken > img {
-  width: 110px;
+.hero > img,
+.chicken > img {
+  width: 60px;
   overflow: hidden;
 }
-
