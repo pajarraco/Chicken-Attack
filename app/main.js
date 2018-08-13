@@ -3,6 +3,7 @@
 // run when all elements in documents are loaded
 window.onload = function() {
   var mrWick = loadHero();
+  loadStage();
   // load controller
   loadController(mrWick);
 
@@ -10,6 +11,10 @@ window.onload = function() {
   setTimeout(function() {
     loadChicken();
   }, 1500);
+
+  setTimeout(function() {
+    loadChicken();
+  }, 2500);
 
   // run timer - this is the circle of the game
   setInterval(function() {

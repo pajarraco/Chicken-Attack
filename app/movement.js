@@ -7,7 +7,7 @@ var viewPort = {
   left: 0
 };
 
-var maxJump = 70;
+var maxJump = 65;
 var stateJump = JSON.stringify(JSON.parse(maxJump));
 var floor = 50;
 var GRAVITY = 8;
@@ -100,7 +100,7 @@ function movingLeft(person) {
 
 function jump(person) {
   if (person.state.indexOf('jumping') === -1) {
-    if (person.top + person.height === viewPort.height - floor) {
+    if (person.top + person.height >= viewPort.height - floor) {
       stateJump = 0;
       person.state.push('jumping');
     } else {
@@ -112,7 +112,7 @@ function jump(person) {
 
 function jumping(person) {
   if (stateJump < maxJump) {
-    person.top = person.top - 3;
+    person.top = person.top - 2;
     stateJump = stateJump + 1;
   } else {
     person.movement = null;
