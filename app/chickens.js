@@ -43,7 +43,7 @@ function loadChicken() {
 }
 
 function chickenMomevement(chicken) {
-  if (chicken.left === 0) {
+  if (chicken.left <= 0) {
     var i = chicken.state.indexOf('movingLeft');
     chicken.state.splice(i, 1);
     chicken.state.push('movingRight');
