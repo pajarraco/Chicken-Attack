@@ -100,7 +100,7 @@ function movingLeft(person) {
 
 function jump(person) {
   if (person.state.indexOf('jumping') === -1) {
-    if (person.top + person.height === viewPort.height - floor) {
+    if (person.top + person.height >= viewPort.height - floor) {
       stateJump = 0;
       person.state.push('jumping');
     } else {

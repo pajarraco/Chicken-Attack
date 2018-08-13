@@ -23,5 +23,5 @@ window.onload = function() {
     }
     runAttacks(mrWick);
     // }
-  }, 5); // time repeat in milliseconds
+  }, 50); // time repeat in milliseconds
 };
