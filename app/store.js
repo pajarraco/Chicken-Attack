@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var store = [];
 
@@ -8,15 +8,18 @@ function addPerson(person) {
 }
 
 function updatePerson(index, newPerson) {
-  if (newPerson.type === 'chicken') {
+  if (newPerson.type === "chicken") {
     newPerson = chickenMomevement(newPerson);
+  } else {
+    newPerson = moveStage(newPerson);
   }
+
   store[index] = newPerson;
-  var component = document.getElementById(newPerson.id)
+  var component = document.getElementById(newPerson.id);
   var img = component.children;
   img[0].src = newPerson.img;
-  component.style.left = newPerson.left + 'px';
-  component.style.top = newPerson.top + 'px';
+  component.style.left = newPerson.left + "px";
+  component.style.top = newPerson.top + "px";
 }
 
 function removePerson(index) {
