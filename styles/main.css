@@ -14,7 +14,7 @@ body {
 .stage > .bg-back {
   width: 150%;
   height: 100%;
-  background-image: url('../assets/bd_back_1.jpg');
+  background-image: url("../assets/bd_back_1.jpg");
   background-size: cover;
   background-position: bottom center;
   position: absolute;
@@ -25,7 +25,7 @@ body {
   height: 100%;
   bottom: 0;
   position: absolute;
-  background-image: url('../assets/bg_middle_1.png');
+  background-image: url("../assets/bg_middle_1.png");
   background-size: cover;
   background-position: bottom center;
 }
@@ -35,7 +35,7 @@ body {
   height: 50px;
   bottom: 0;
   position: absolute;
-  background-color: rgb(161, 58, 170);
+  background-image: url("../assets/floor.jpg");
 }
 
 .hero,
