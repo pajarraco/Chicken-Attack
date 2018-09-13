@@ -26,9 +26,10 @@ body {
   height: 100%;
   bottom: 0;
   position: absolute;
-  background-image: url('../assets/bg_middle_1.png');
-  background-size: cover;
+  background-image: url("../assets/bg_middle_1.png");
+  background-size: auto;
   background-position: bottom center;
+  background-repeat: repeat-x;
 }
 
 .stage > .front {
