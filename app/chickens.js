@@ -32,7 +32,9 @@ function loadChicken() {
   chicken.id = createID();
   createChicken(chicken.id);
   var component = document.getElementById(chicken.id);
-  component.style.left = window.innerWidth + 'px';
+  component.style.left = stage.width - Math.floor(Math.random() * 2000 + 2000) + 'px';
+  console.log(component.style.left);
+
   var img = component.children;
   img[0].scr = chicken.img;
   chicken.top = component.offsetTop;

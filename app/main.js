@@ -11,12 +11,21 @@ window.onload = function() {
 
   // load chickens
   loadChicken();
+  loadChicken();
+  loadChicken();
+  loadChicken();
 
   setTimeout(function() {
+    loadChicken();
+    loadChicken();
+    loadChicken();
     loadChicken();
   }, 2000);
 
   setTimeout(function() {
+    loadChicken();
+    loadChicken();
+    loadChicken();
     loadChicken();
   }, 3000);
 

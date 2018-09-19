@@ -143,6 +143,8 @@ function gravity(person) {
 }
 
 function dying(person) {
-  person.top = person.top + 3;
+  if (person.top < viewPort.height) {
+    person.top = person.top + 3;
+  }
   return person;
 }
