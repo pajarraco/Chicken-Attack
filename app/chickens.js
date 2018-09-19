@@ -42,19 +42,6 @@ function loadChicken() {
   return addPerson(chicken);
 }
 
-function chickenMovement(chicken) {
-  if (chicken.left <= stage.left) {
-    var i = chicken.state.indexOf('movingLeft');
-    chicken.state.splice(i, 1);
-    chicken.state.push('movingRight');
-  } else if (chicken.left + chicken.width >= stage.width) {
-    var i = chicken.state.indexOf('movingRight');
-    chicken.state.splice(i, 1);
-    chicken.state.push('movingLeft');
-  }
-  return chicken;
-}
-
 function createID() {
   var S4 = function() {
     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);

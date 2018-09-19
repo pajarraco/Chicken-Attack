@@ -8,9 +8,7 @@ function addPerson(person) {
 }
 
 function updatePerson(index, newPerson) {
-  if (newPerson.type === 'chicken') {
-    newPerson = chickenMovement(newPerson);
-  } else {
+  if (newPerson.type === 'hero') {
     newPerson = moveStage(newPerson);
   }
 

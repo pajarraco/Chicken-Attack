@@ -13,7 +13,7 @@ function defaultHero() {
       up: '',
       down: ''
     }
-  }
+  };
 }
 
 function createHero(id) {
@@ -30,7 +30,7 @@ function loadHero() {
   var hero = defaultHero();
   createHero(hero.id);
   var component = document.getElementById(hero.id);
-  component.style.left = (window.innerWidth / 2) - (component.offsetWidth / 2) + 'px';
+  component.style.left = window.innerWidth / 2 - component.offsetWidth / 2 + 'px';
   var img = component.children;
   img[0].src = hero.img;
   hero.top = component.offsetTop;
