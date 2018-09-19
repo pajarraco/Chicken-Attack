@@ -16,9 +16,10 @@ body {
   height: 100%;
   bottom: 0;
   position: absolute;
-  background-image: url('../assets/bd_back_1.jpg');
-  background-size: cover;
+  background-image: url("../assets/bd_back_1.jpg");
+  background-size: auto;
   background-position: bottom center;
+  background-repeat: repeat-x;
 }
 
 .stage > .bg-middle {
@@ -37,7 +38,7 @@ body {
   height: 50px;
   bottom: 0;
   position: absolute;
-  background-image: url('../assets/floor.jpg');
+  background-image: url("../assets/floor.jpg");
 }
 
 .hero,
@@ -49,7 +50,6 @@ body {
   width: 50px;
   justify-content: center;
   display: flex;
-  border: 1px solid #239874;
 }
 
 .hero > img,
