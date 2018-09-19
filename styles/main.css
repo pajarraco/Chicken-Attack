@@ -16,7 +16,7 @@ body {
   height: 100%;
   bottom: 0;
   position: absolute;
-  background-image: url("../assets/bd_back_1.jpg");
+  background-image: url('../assets/bd_back_1.jpg');
   background-size: auto;
   background-position: bottom center;
   background-repeat: repeat-x;
@@ -27,7 +27,7 @@ body {
   height: 100%;
   bottom: 0;
   position: absolute;
-  background-image: url("../assets/bg_middle_1.png");
+  background-image: url('../assets/bg_middle_1.png');
   background-size: auto;
   background-position: bottom center;
   background-repeat: repeat-x;
@@ -38,7 +38,7 @@ body {
   height: 50px;
   bottom: 0;
   position: absolute;
-  background-image: url("../assets/floor.jpg");
+  background-image: url('../assets/floor.jpg');
 }
 
 .hero,
@@ -50,6 +50,7 @@ body {
   width: 50px;
   justify-content: center;
   display: flex;
+  border: 1px solid #000000;
 }
 
 .hero > img,

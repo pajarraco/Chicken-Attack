@@ -76,10 +76,16 @@ function runMovement(person) {
 
 function movingRight(person) {
   person.img = person.images.base;
-  if (person.left + person.width < viewPort.width) {
+  var personRight = person.left + person.width;
+  if (personRight < stage.width && (personRight < viewPort.width || person.type !== 'hero')) {
     person.left = person.left + 1;
   } else {
-    person.movement = null;
+    if (person.type === 'hero') {
+      person.movement = null;
+    } else {
+      person.left = person.left - 1;
+      person.state.push('movingLeft');
+    }
     var i = person.state.indexOf('movingRight');
     person.state.splice(i, 1);
   }
@@ -88,10 +94,15 @@ function movingRight(person) {
 
 function movingLeft(person) {
   person.img = person.images.left;
-  if (person.left > viewPort.left) {
+  if (person.left > stage.left) {
     person.left = person.left - 1;
   } else {
-    person.movement = null;
+    if (person.type === 'hero') {
+      person.movement = null;
+    } else {
+      person.left = person.left + 1;
+      person.state.push('movingRight');
+    }
     var i = person.state.indexOf('movingLeft');
     person.state.splice(i, 1);
   }
@@ -132,6 +143,8 @@ function gravity(person) {
 }
 
 function dying(person) {
-  person.top = person.top + 3;
+  if (person.top < viewPort.height) {
+    person.top = person.top + 3;
+  }
   return person;
 }
