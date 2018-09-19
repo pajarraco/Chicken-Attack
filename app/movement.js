@@ -55,7 +55,7 @@ function runMovement(person) {
             break;
 
           case 'movingRight':
-            // console.log('state moving right');
+            console.log('state moving right');
             newPosition = movingRight(person);
             break;
 
@@ -76,24 +76,34 @@ function runMovement(person) {
 
 function movingRight(person) {
   person.img = person.images.base;
-  if (person.left + person.width < viewPort.width) {
-    person.left = person.left + 1;
+  console.log(viewPort.width);
+
+  if (person.type === 'hero') {
+    if (person.left + person.width < stage.width) {
+      person.left = person.left + 1;
+    } else {
+      person.movement = null;
+      var i = person.state.indexOf('movingRight');
+      person.state.splice(i, 1);
+    }
   } else {
-    person.movement = null;
-    var i = person.state.indexOf('movingRight');
-    person.state.splice(i, 1);
+    person.left = person.left + 1;
   }
   return person;
 }
 
 function movingLeft(person) {
   person.img = person.images.left;
-  if (person.left > viewPort.left) {
-    person.left = person.left - 1;
+  if (person.type === 'hero') {
+    if (person.left > stage.left) {
+      person.left = person.left - 1;
+    } else {
+      person.movement = null;
+      var i = person.state.indexOf('movingLeft');
+      person.state.splice(i, 1);
+    }
   } else {
-    person.movement = null;
-    var i = person.state.indexOf('movingLeft');
-    person.state.splice(i, 1);
+    person.left = person.left - 1;
   }
   return person;
 }
