@@ -1,6 +1,7 @@
 'use strict';
 
 var store = [];
+var runningLevel = 0;
 
 function addPerson(person) {
   store.push(person);
@@ -22,4 +23,38 @@ function updatePerson(index, newPerson) {
 
 function removePerson(index) {
   store.splice(index, 1);
+}
+
+function runLevel(level) {
+  switch (level) {
+    case 1:
+      runningLevel = level;
+      level1();
+      break;
+
+    default:
+      break;
+  }
+}
+
+function loadLevel(level, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'app/levels/level-' + level + '/stage.html', true);
+  xhr.onreadystatechange = function() {
+    if (this.readyState !== 4) return;
+    if (this.status !== 200) return;
+    callback(this.responseText);
+  };
+  xhr.send();
+}
+
+function loadChickensJson(level, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'app/levels/level-' + level + '/chickens.json', true);
+  xhr.onreadystatechange = function() {
+    if (this.readyState !== 4) return;
+    if (this.status !== 200) return;
+    callback(this.responseText);
+  };
+  xhr.send();
 }

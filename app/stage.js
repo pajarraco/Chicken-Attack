@@ -12,7 +12,7 @@ var rightCount = 0;
 var leftBackCount = 0;
 var rightBackCount = 0;
 
-function createStage() {
+function createStage(_stage) {
   var stageComponent = document.getElementById('stage');
   var bgBack = document.createElement('div');
   var bgMiddle = document.createElement('div');
@@ -22,15 +22,18 @@ function createStage() {
   bgMiddle.className = 'bg-middle';
   front.className = 'front';
 
+  front.innerHTML = _stage;
+
   stageComponent.appendChild(bgBack);
   stageComponent.appendChild(bgMiddle);
   stageComponent.appendChild(front);
 
   stage.width = front.offsetWidth;
+  return front;
 }
 
-function loadStage() {
-  createStage();
+function loadStage(stage) {
+  createStage(stage);
 }
 
 function moveStage(hero) {

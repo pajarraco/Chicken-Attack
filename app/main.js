@@ -1,34 +1,15 @@
 'use strict';
 
 var ticker = null;
+var level = 0;
 
 // run when all elements in documents are loaded
 window.onload = function() {
   var mrWick = loadHero();
-  loadStage();
 
   loadController(mrWick);
 
-  // load chickens
-  loadChicken();
-  loadChicken();
-  loadChicken();
-  loadChicken();
-
-  setTimeout(function() {
-    loadChicken();
-    loadChicken();
-    loadChicken();
-    loadChicken();
-  }, 2000);
-
-  setTimeout(function() {
-    loadChicken();
-    loadChicken();
-    loadChicken();
-    loadChicken();
-  }, 3000);
-
+  runLevel(level + 1);
   // run timer - this is the circle of the game
   ticker = setInterval(function() {
     // console.log(store);
