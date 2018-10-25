@@ -14,10 +14,10 @@ function runAttacks(heroIndex) {
       var chickenTop = chicken.top;
       var chickenBottom = chicken.top + chicken.height;
       if (heroBottom === chickenTop && heroLeft <= chickenRight && heroRight >= chickenLeft) {
-        console.log('kill chicken');
         chicken.movement = 'kill';
         chicken.state = ['dying'];
         updatePerson(i, chicken);
+        console.log('chicken "' + chicken.id + '" was kill');
       } else {
         if (
           ((heroLeft === chickenRight || heroRight === chickenLeft) &&
@@ -27,7 +27,7 @@ function runAttacks(heroIndex) {
           hero.movement = 'kill';
           hero.state = ['dying'];
           updatePerson(heroIndex, hero);
-          console.log('kill hero');
+          console.log('hero was kill');
         }
       }
     }
