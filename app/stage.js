@@ -4,13 +4,28 @@ var stage = {
   left: 0,
   middleLeft: 0,
   backLeft: 0,
-  width: 0
+  width: 0,
+  parts: [],
+  bottom: 0
 };
 
 var leftCount = 0;
 var rightCount = 0;
 var leftBackCount = 0;
 var rightBackCount = 0;
+
+function addFrontParts(parts) {
+  for (let i = 0; i < parts.length; i++) {
+    if (parts[i].nodeName === 'DIV') {
+      stage.parts.push({
+        top: parts[i].offsetTop,
+        left: parts[i].offsetLeft,
+        height: parts[i].offsetHeight,
+        width: parts[i].offsetWidth
+      });
+    }
+  }
+}
 
 function createStage(_stage) {
   var stageComponent = document.getElementById('stage');
@@ -28,7 +43,9 @@ function createStage(_stage) {
   stageComponent.appendChild(bgMiddle);
   stageComponent.appendChild(front);
 
+  addFrontParts(front.childNodes);
   stage.width = front.offsetWidth;
+  stage.bottom = front.offsetHeight;
   return front;
 }
 
@@ -75,7 +92,9 @@ function applyMove() {
   var front = document.getElementsByClassName('front')[0];
   var middle = document.getElementsByClassName('bg-middle')[0];
   var back = document.getElementsByClassName('bg-back')[0];
-  front.style.left = stage.left + 'px';
-  middle.style.left = stage.middleLeft + 'px';
-  back.style.left = stage.backLeft + 'px';
+  if (front && middle && back) {
+    front.style.left = stage.left + 'px';
+    middle.style.left = stage.middleLeft + 'px';
+    back.style.left = stage.backLeft + 'px';
+  }
 }

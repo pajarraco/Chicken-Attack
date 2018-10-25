@@ -12,7 +12,6 @@ function updatePerson(index, newPerson) {
   if (newPerson.type === 'hero') {
     newPerson = moveStage(newPerson);
   }
-
   store[index] = newPerson;
   var component = document.getElementById(newPerson.id);
   var img = component.children;
