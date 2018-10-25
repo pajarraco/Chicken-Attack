@@ -9,13 +9,14 @@ var viewPort = {
 
 var maxJump = 65;
 var stateJump = JSON.stringify(JSON.parse(maxJump));
-var floor = 50;
+var floor = 0;
 var GRAVITY = 8;
 var acceleration = GRAVITY / stateJump;
 
 function runMovement(person) {
   // create new position of the person
   var newPosition;
+
   // run when a new movement is place
   if (person.movement) {
     // select type of movement
@@ -85,6 +86,7 @@ function movingRight(person) {
     } else {
       person.left = person.left - 1;
       person.state.push('movingLeft');
+      console.log('1');
     }
     var i = person.state.indexOf('movingRight');
     person.state.splice(i, 1);
@@ -111,7 +113,7 @@ function movingLeft(person) {
 
 function jump(person) {
   if (person.state.indexOf('jumping') === -1) {
-    if (person.top + person.height >= viewPort.height - floor) {
+    if (person.top + person.height >= viewPort.height - calculateFloor(person)) {
       stateJump = 0;
       person.state.push('jumping');
     } else {
@@ -135,7 +137,7 @@ function jumping(person) {
 
 function gravity(person) {
   if (person.state.indexOf('jumping') === -1) {
-    if (person.top + person.height < viewPort.height - floor) {
+    if (person.top + person.height < viewPort.height - calculateFloor(person)) {
       person.top = person.top + 2;
     }
   }
@@ -145,6 +147,37 @@ function gravity(person) {
 function dying(person) {
   if (person.top < viewPort.height) {
     person.top = person.top + 3;
+  } else {
+    person.state = [];
   }
   return person;
+}
+
+function calculateFloor(person) {
+  if (person.id === 'mrwick') {
+    // console.log(person);
+  }
+
+  var _floor = stage.bottom;
+  for (let i = 0; i < stage.parts.length; i++) {
+    var part = stage.parts[i];
+    var personRight = person.left + person.width;
+    var personBottom = person.top + person.height;
+    var partTop = viewPort.height + part.top;
+    if (person.id === 'mrwick') {
+      // console.log(personRight, part.left, personBottom, partTop);
+
+      if (personRight >= part.left && personBottom <= partTop) {
+        // console.log('inside');
+        // clearInterval(ticker);
+        _floor = Math.abs(part.top) + stage.bottom;
+      }
+    }
+  }
+
+  // setTimeout(() => {
+  //   clearInterval(ticker);
+  // }, 2000);
+
+  return _floor;
 }
